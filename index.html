@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カレーの作り方スライドショー</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .slideshow-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+        .slide {
+            display: none;
+        }
+        .slide.active {
+            display: block;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .slide-number {
+            text-align: center;
+            margin-top: 10px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div id="slide1" class="slide active">
+            <h2>カレーの作り方</h2>
+            <p>美味しいカレーを作るための簡単なステップをご紹介します。</p>
+        </div>
+        <div id="slide2" class="slide">
+            <h2>1. 材料の準備</h2>
+            <p>肉、玉ねぎ、にんじん、じゃがいも、カレールー、油、水を用意します。</p>
+        </div>
+        <div id="slide3" class="slide">
+            <h2>2. 野菜を切る</h2>
+            <p>玉ねぎ、にんじん、じゃがいもを一口大に切ります。</p>
+        </div>
+        <div id="slide4" class="slide">
+            <h2>3. 肉を炒める</h2>
+            <p>鍋に油をひき、肉を炒めます。</p>
+        </div>
+        <div id="slide5" class="slide">
+            <h2>4. 野菜を炒める</h2>
+            <p>肉に火が通ったら、野菜を加えて炒めます。</p>
+        </div>
+        <div id="slide6" class="slide">
+            <h2>5. 水を加える</h2>
+            <p>野菜がしんなりしたら、水を加えて煮込みます。</p>
+        </div>
+        <div id="slide7" class="slide">
+            <h2>6. カレールーを加える</h2>
+            <p>野菜が柔らかくなったら、火を止めてカレールーを加え、溶かします。</p>
+        </div>
+        <div id="slide8" class="slide">
+            <h2>7. 仕上げ</h2>
+            <p>再び火をつけ、とろみがつくまで煮込んだら完成です。</p>
+        </div>
+        <div class="navigation">
+            <button onclick="changeSlide(-1)">前へ</button>
+            <button onclick="changeSlide(1)">次へ</button>
+        </div>
+        <div class="slide-number">スライド <span id="current-slide">1</span> / 8</div>
+    </div>
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
+        }
+
+        function showSlide(n) {
+            const slides = document.getElementsByClassName("slide");
+            if (n > totalSlides) {
+                currentSlide = 1;
+            } else if (n < 1) {
+                currentSlide = totalSlides;
+            } else {
+                currentSlide = n;
+            }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+
+            document.getElementById("slide" + currentSlide).classList.add("active");
+            document.getElementById("current-slide").textContent = currentSlide;
+        }
+    </script>
+</body>
+</html>
